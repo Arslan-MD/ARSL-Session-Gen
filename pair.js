@@ -9,7 +9,7 @@ const {
   delay,
   Browsers,
   makeCacheableSignalKeyStore
-} = require('@fizzxydev/baileys-pro');
+} = require('@fizzxydev/baileys-pro'); // 🛑 Note: this should match your actual installed package!
 
 const router = express.Router();
 
@@ -37,8 +37,9 @@ router.get('/', async (req, res) => {
       if (!sock.authState.creds.registered) {
         await delay(1500);
         number = number.replace(/[^0-9]/g, '');
+
         try {
-          const code = await sock.requestPairingCode(`${number}@s.whatsapp.net`);
+          const code = await sock.requestPairingCode(`${number}@s.whatsapp.net`); // ✅ FIXED LINE
           if (!code) return res.send({ code: "❌ Pairing failed: code is null" });
           return res.send({ code });
         } catch (err) {
