@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
         await delay(1500);
         number = number.replace(/[^0-9]/g, '');
         try {
-          const code = await sock.requestPairingCode(number);
+          const code = await sock.requestPairingCode(`${number}@s.whatsapp.net`);
           if (!code) return res.send({ code: "❌ Pairing failed: code is null" });
           return res.send({ code });
         } catch (err) {
